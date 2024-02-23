@@ -10,7 +10,7 @@
 <link href="hitchhiker_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.3.310">
 
-  <meta name="author" content="Florian Oswald">
+  <meta name="author" content="Florian Oswald, RES Data Editor">
   <title>Hitchhiker’s 👍 Guide To Reproducibility</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -99,8 +99,6 @@
   <link href="hitchhiker_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="hitchhiker_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="hitchhiker_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="hitchhiker_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="hitchhiker_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="hitchhiker_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -391,14 +389,14 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
+<section id="title-slide" data-background-image="img/RES-logo_WHITE copy.png" data-background-position="85% 80%" data-background-size="15%" class="quarto-title-block center">
   <h1 class="title">Hitchhiker’s 👍 Guide To Reproducibility</h1>
   <p class="subtitle"><a href="https://RES-reproducibility.github.io/hitchhiker/">Workshop at CEPII Paris</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Florian Oswald 
+Florian Oswald, RES Data Editor 
 </div>
 </div>
 </div>
@@ -899,12 +897,15 @@ Florian Oswald
 </section>
 <section id="case-studies" class="slide level2">
 <h2>Case Studies</h2>
-<ol type="1">
-<li>Something that does not work: https://zenodo.org/records/6607692</li>
-<li>Something that works: https://zenodo.org/records/3925391</li>
-</ol>
+<ul>
+<li>show replication of this https://zenodo.org/records/3925391 : Reis this will work in python venv with Conda<br>
+</li>
+<li>https://zenodo.org/records/5634269 benhabib bisin works</li>
+<li>https://zenodo.org/records/5123362 stata works</li>
+<li>https://zenodo.org/records/6607692 will fail because of R versioning problem.</li>
+</ul>
 
-<img src="/img/RES-logo_WHITE.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<img src="img/RES-logo_WHITE.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p><a href="https://RES-reproducibility.github.io/hitchhiker/">Hitchhiker’s 👍 Guide To Reproducibility</a></p>
 </div>
 </section>
@@ -918,7 +919,6 @@ Florian Oswald
   <script src="hitchhiker_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="hitchhiker_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="hitchhiker_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="hitchhiker_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="hitchhiker_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -940,8 +940,7 @@ Florian Oswald
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1112,7 +1111,7 @@ Florian Oswald
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
