@@ -3,14 +3,14 @@ title: Hitchhiker's 👍 Guide To Reproducibility
 format: 
   revealjs:
     theme: _extensions/metropolis-theme/metropolis.scss
-    chalkboard: true
-    logo: /img/RES-logo_WHITE.png
+    chalkboard: false
+    logo: img/RES-logo_WHITE.png
     footer: "[Hitchhiker's 👍 Guide To Reproducibility](https://RES-reproducibility.github.io/hitchhiker/)"
     incremental: false
     code-line-numbers: false
     highlight-style: github
     slide-number: true
-author: Florian Oswald
+author: Florian Oswald, RES Data Editor
 subtitle: "[Workshop at CEPII Paris](https://RES-reproducibility.github.io/hitchhiker/)"
 date: today
 date-format: "D MMMM, YYYY"
@@ -523,5 +523,8 @@ Such mechanisms can reduce version conflicts amongst your dependencies. To the e
 
 ## Case Studies
 
-1. Something that does not work: https://zenodo.org/records/6607692
-2. Something that works: https://zenodo.org/records/3925391
+
+* show replication of this https://zenodo.org/records/3925391 : Reis this will work in python venv with Conda    
+* https://zenodo.org/records/5634269 benhabib bisin works
+* https://zenodo.org/records/5123362 stata works
+* https://zenodo.org/records/6607692 will fail because of R versioning problem.
