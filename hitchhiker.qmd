@@ -1,0 +1,527 @@
+---
+title: Hitchhiker's 👍 Guide To Reproducibility
+format: 
+  revealjs:
+    theme: _extensions/metropolis-theme/metropolis.scss
+    chalkboard: true
+    logo: /img/RES-logo_WHITE.png
+    footer: "[Hitchhiker's 👍 Guide To Reproducibility](https://RES-reproducibility.github.io/hitchhiker/)"
+    incremental: false
+    code-line-numbers: false
+    highlight-style: github
+    slide-number: true
+author: Florian Oswald
+subtitle: "[Workshop at CEPII Paris](https://RES-reproducibility.github.io/hitchhiker/)"
+date: today
+date-format: "D MMMM, YYYY"
+---
+
+## Agenda
+
+1. [10 simple rules to Reproducibility](https://zenodo.org/records/8117361) by Econ Data Editors.
+2. The `README` file.
+2. Some Reproducibility Best Practices.
+3. Three attempts at reproducing published papers.
+
+
+---
+
+## [10 simple rules](https://zenodo.org/records/8117361) to Reproducibility
+
+:::: {.columns}
+
+::: {.column width="45%"}
+::: {.fragment}
+1. Computational Empathy
+:::
+::: {.fragment}
+2. Make data accessible
+:::
+
+::: {.fragment}
+3. Cite Data and how to access it
+:::
+
+::: {.fragment}
+4. Describe software and hardware requirements
+:::
+
+::: {.fragment}
+5. Provide all code
+:::
+
+:::
+::: {.column width="2%"}
+<!-- empty column to create gap -->
+:::
+::: {.column width="43%"}
+::: {.fragment}
+6. Explain how to reproduce your work
+:::
+
+::: {.fragment}
+7. Provide a table of all things that can be reproduced
+:::
+
+::: {.fragment}
+8. Include all supporting material
+:::
+
+::: {.fragment}
+9. Use a permissible license
+:::
+
+::: {.fragment}
+10. Re-run everything!
+:::
+
+:::
+
+::::
+
+---
+
+## The `README` File
+
+1. Plain text top level file which explains **everything** about your package.
+2. We have a useful [template](https://social-science-data-editors.github.io/template_README/template-README.html) and a [template generator](https://www.templatereadme.org).
+3. Here are the [minimum requirements for a `README`](https://ejdataeditor.github.io/package.html#the-readme-file) at *The Economic Journal*
+
+
+---
+
+## Best Practices
+
+1. Project Organisation (**folder structure**)
+2. Code
+3. Data
+4. Output
+
+
+---
+
+## Project Organisation
+
+* _Folder Structure_ is a first order concern for your project.
+
+::: {.fragment}
+1. Inputs: Data, parameters, etc
+2. Outputs: Numbers, tables, figures
+3. Code
+4. Paper/Report etc
+:::
+
+::: {.fragment}
+Example?
+:::
+
+---
+
+### Good or Bad?
+
+::: {.columns}
+::: {.column width=45%}
+
+<br>
+```
+.
+├── 20211107ext_2v1.do
+├── 20220120ext_2v1.do
+├── 20221101wave1.dta
+├── james
+│   └── NLSY97
+│       └── nlsy97_v2.do
+├── mary
+│   └── NLSY97
+│       └── nlsy97.do
+├── matlab_fortran
+│   ├── graphs
+│   ├── sensitivity1
+│   │   ├── data.xlsx
+│   │   ├── good_version.do
+│   │   └── script.m
+│   └── sensitivity2
+│       ├── models.f90
+│       ├── models.mod
+│       └── nrtype.f90
+├── readme.do
+├── scatter1.eps
+├── scatter1_1.eps
+├── scatter1_2.eps
+├── ts.eps
+├── wave1.dta
+└── wave2.dta
+└── wave2regs.dta
+└── wave2regs2.dta
+```
+(scroll down! 😉)
+
+:::
+::: {.column width="1%"}
+<!-- empty column to create gap -->
+:::
+::: {.column width=45%}
+
+::: {.fragment}
+
+<br>
+<br>
+
+#### Bad! 👎
+
+* Sub directories are not helpful
+* File names are confusing
+* code/data/output are *not* separated
+
+:::
+
+
+:::
+:::
+
+
+---
+
+### Good 👍
+
+
+::: {.columns}
+::: {.column width=45%}
+
+<br>
+```
+.
+├── README.md
+├── code
+│   ├── R
+│   │   ├── 0-install.R
+│   │   ├── 1-main.R
+│   │   ├── 2-figure2.R
+│   │   └── 3-table2.R
+│   ├── stata
+│   │   ├── 1-main.do
+│   │   ├── 2-read_raw.do
+│   │   ├── 3-figure1.do
+│   │   ├── 4-figure3.do
+│   │   └── 5-table1.do
+│   └── tex
+│       ├── appendix.tex
+│       └── main.tex
+├── data
+│   ├── processed
+│   └── raw
+└── output
+    ├── plots
+    └── tables
+```
+
+
+:::
+::: {.column width="1%"}
+<!-- empty column to create gap -->
+:::
+::: {.column width=45%}
+
+<br>
+
+::: {.fragment}
+#### Good.
+
+* Meaningful sub directories
+* top level `README`
+* code/data/output are separated
+
+
+:::
+
+
+:::
+:::
+
+
+
+
+
+---
+
+### Example: [TIER Protocol](https://www.projecttier.org/tier-protocol/protocol-4-0/) structure
+
+![](img/TIER.png)
+
+---
+
+### Best Project Structure?
+
+<br>
+
+
+::: {.fragment}
+::: {.callout-note}
+There is no unique best way to organize your project: Make it simple, intuitive and helpful.
+:::
+:::
+
+<br>
+
+::: {.fragment}
+::: {.callout-important}
+Ideally your *entire* project is under [version control](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control). 
+:::
+:::
+
+---
+
+## Code
+
+::: {.callout-tip}
+# Question:
+
+How to write reproducible code? 
+:::
+
+::: {.fragment}
+👉 Huge question to answer. Let's try with a few simple things first:
+:::
+
+::: {.fragment}
+1. Provide a run script which...*runs everything*.
+2. **No** copy and paste in your pipeline! Write results to disk.
+3. Clear instructions
+4. Provide a clear way to create the required environment (library installation etc)
+:::
+
+
+---
+
+### Reproducible Code
+
+
+::: {.columns}
+::: {.column width=45%}
+
+::: {.callout-important}
+# No Manual Manipulation.
+* _Change this parameter to 0.4, then run code again_ 😖
+* _I computed this number manually_ 😖😖
+:::
+
+::: {.callout-tip}
+# Do This!
+* Use functions, ado files, programs, macros, subroutines etc
+* Use loops and parameters
+* Use placeholders for file paths
+:::
+
+:::
+::: {.column width="1%"}
+<!-- empty column to create gap -->
+:::
+::: {.column width=45%}
+
+In general, take all necessary steps to ensure cross-platform compatibility of your code.
+
+::: {.fragment}
+_file paths are such low-hanging fruit 🍇..._
+:::
+
+:::
+:::
+
+
+---
+
+### File Paths
+
+👉 Ask the user to set the `root` of your project, via global variable, environment variable, or other
+```R
+# in my R, I do
+Sys.setenv(PACKAGE_ROOT="/Users/floswald/Downloads/your_package")
+
+# your package uses:
+file.path(Sys.getenv("PACKAGE_ROOT"), "data", "wages.csv")
+```
+
+<br>
+
+```stata
+# in my stata, I do
+global PACKAGE_ROOT "/Users/floswald/Downloads/your_package"
+
+# your package uses
+use "$PACKAGE_ROOT/data/wages.dta"
+```
+
+*Always* use forward slashes on Stata `/`, even on a windows machine!
+
+
+---
+
+### Safe Environments for Running Your Code
+
+:::: {.columns}
+
+::: {.column width=45%}
+![[https://xkcd.com/1987/](https://xkcd.com/1987/)](https://imgs.xkcd.com/comics/python_environment.png)
+:::
+
+
+::: {.column width=1%}
+:::
+
+::: {.column width=45%}
+::: {.fragment}
+::: {.callout-important}
+# No Guarantee
+
+Your code will yield identical results on a different computer **only if** certain conditions apply.
+:::
+:::
+
+::: {.fragment}
+::: {.callout-tip}
+# Protected Environments 
+
+👉 You should provide a mechanism which ensures that those conditions *do* apply.
+
+:::
+:::
+
+:::
+
+
+::::
+
+
+
+
+---
+
+### Safe Environments for Running Your Code
+
+* At a minimum, you list your exact computing environment:
+* OS, software and which version used (`R 4.1`, `stata 17/MP`, `matlab 2023b`, `GNU Fortran (Homebrew GCC 13.2.0)`)
+
+* Libraries and which exact version used (`ggplot2 1.3.4`, `outreg 2`, `numpy 1.26.4`, `boost 1.8.3` )
+
+* Unfortunately, this may not be enough at times. (See comic on previous slide!)
+
+👉 Virtual Environments can help.
+
+
+---
+
+### Provide a Virtual Environment
+
+
+
+:::: {.columns}
+
+::: {.column width=45%}
+#### Python
+
+via anaconda:
+```python
+conda create -n py27 python=2.7 numpy=1.15.4 matplotlib
+conda activate py27
+```
+
+There are other virtual env managers in python.
+
+#### R
+
+`R` via [`renv`](https://rstudio.github.io/renv/articles/renv.html)
+
+```R
+# in your existing project:
+renv::init() # creates local library
+renv::snapshot() # commit
+renv::restore()  # checkout
+```
+
+I recommend to avoid the `groundhog` package.
+
+
+:::
+
+
+::: {.column width=1%}
+:::
+
+::: {.column width=45%}
+#### julia
+
+Julia built-in `Pkg` manager:
+
+```julia
+(@v1.10) pkg> activate .
+  Activating new project at `~/CEPII`
+  
+(CEPII) pkg> add DataFrames GLM
+# created 2 files in `~/CEPII`
+# tracking all dependencies
+
+```
+
+<br>
+
+#### Docker 🐳
+
+...or provide a full [docker container](https://aeadataeditor.github.io/posts/2021-11-16-docker).
+
+
+:::
+
+
+::::
+
+::: {.fragment}
+::: {.callout-note}
+Such mechanisms can reduce version conflicts amongst your dependencies. To the extent that all versions of those dependencies are still available, this guarantees a stable computing environment.
+:::
+:::
+
+
+---
+
+## Data
+
+
+* Always keep your raw data intact (i.e. read-only). 
+* Generate separate analysis datasets to perform analysis. 
+* Datasets change over time, keep a record of the date and versions you obtained. It might be difficult to obtain it in the future.
+
+
+---
+
+## Output
+
+
+* Write both tables and figures to disk. 
+* The gold standard: include this table in your readme.
+
+:::{.smaller}
+
+| Output in Paper | Output in Package | Program to execute |
+| ------ | -------- | ------------------------- |
+| Table 1 | `outputs/tables/table1.tex` |  `code/table1.do` |
+| Figure 1 | `outputs/plots/figure1.pdf` |  `code/figure1.do` |
+| Figure 2 | `outputs/plots/figure2.pdf` |  `code/figure2.do` |
+
+:::
+
+---
+
+### Output 2
+
+* Run your codes from the replication folder before you submit and make sure it runs and all your results are reproduced - ideally on another machine!
+* Make sure to **delete all expected output from the package before you run it**, so you can be sure that all output was actually produced. 
+* Ideally, your submitted paper (your $\LaTeX$ file which produces it) _should depend on the output of your replication package_, so that if a piece of output is missing, the paper cannot be compiled (or you would quickly spot the mistake).
+* Help us by submitting your package **without any expected output**, i.e. with an empty folder `outputs/`.
+
+
+---
+
+## Case Studies
+
+1. Something that does not work: https://zenodo.org/records/6607692
+2. Something that works: https://zenodo.org/records/3925391
