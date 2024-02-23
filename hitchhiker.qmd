@@ -1,5 +1,9 @@
 ---
 title: Hitchhiker's 👍 Guide To Reproducibility
+title-slide-attributes:
+  data-background-image: img/RES-logo_WHITE copy.png
+  data-background-size: 15%
+  data-background-position: 85% 80%
 format: 
   revealjs:
     theme: _extensions/metropolis-theme/metropolis.scss
@@ -10,7 +14,7 @@ format:
     code-line-numbers: false
     highlight-style: github
     slide-number: true
-author: Florian Oswald, RES Data Editor
+author: "Florian Oswald, RES Data Editor"
 subtitle: "[Workshop at CEPII Paris](https://RES-reproducibility.github.io/hitchhiker/)"
 date: today
 date-format: "D MMMM, YYYY"
