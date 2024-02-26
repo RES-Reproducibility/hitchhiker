@@ -8,9 +8,9 @@
 <link href="hitchhiker_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="hitchhiker_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="hitchhiker_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.310">
+  <meta name="generator" content="quarto-1.4.550">
 
-  <meta name="author" content="Florian Oswald, RES Data Editor">
+  <meta name="author" content="Florian Oswald">
   <title>Hitchhiker’s 👍 Guide To Reproducibility</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -31,7 +31,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -95,7 +95,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="hitchhiker_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="hitchhiker_files/libs/revealjs/dist/theme/quarto.css">
   <link href="hitchhiker_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="hitchhiker_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="hitchhiker_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -221,7 +221,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -389,24 +390,30 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="img/RES-logo_WHITE copy.png" data-background-position="85% 80%" data-background-size="15%" class="quarto-title-block center">
+<section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Hitchhiker’s 👍 Guide To Reproducibility</h1>
   <p class="subtitle"><a href="https://RES-reproducibility.github.io/hitchhiker/">Workshop at CEPII Paris</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Florian Oswald, RES Data Editor 
+Florian Oswald <a href="https://orcid.org/0000-0001-7737-2038" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a>
 </div>
+<div class="quarto-title-author-email">
+<a href="mailto:florian.oswald@sciencespo.fr">florian.oswald@sciencespo.fr</a>
 </div>
+        <p class="quarto-title-affiliation">
+            SciencesPo Paris, RES Data Editor
+          </p>
+    </div>
 </div>
 
-  <p class="date">23 February, 2024</p>
+  <p class="date">26 February, 2024</p>
 </section>
 <section id="agenda" class="slide level2">
 <h2>Agenda</h2>
 <ol type="1">
-<li><a href="https://zenodo.org/records/8117361">10 simple rules to Reproducibility</a> by Econ Data Editors.</li>
+<li><a href="https://zenodo.org/records/8117361">10 simple rules to Reproducibility</a> compiled by the Econ Data Editors.</li>
 <li>The <code>README</code> file.</li>
 <li>Some Reproducibility Best Practices.</li>
 <li>Three attempts at reproducing published papers.</li>
@@ -461,7 +468,7 @@ Florian Oswald, RES Data Editor
 </div>
 <div class="fragment">
 <ol start="9" type="1">
-<li>Use a permissible license</li>
+<li>Use a permissible license. Any <a href="https://blog.codinghorror.com/pick-a-license-any-license/">license</a> is better than none.</li>
 </ol>
 </div>
 <div class="fragment">
@@ -475,12 +482,17 @@ Florian Oswald, RES Data Editor
 <section id="the-readme-file" class="slide level2">
 <h2>The <code>README</code> File</h2>
 <ol type="1">
-<li>Plain text top level file which explains <strong>everything</strong> about your package.</li>
+<li>Plain text top level file which explains <span class="bg" style="--col: #e64173">everything</span> about your package.</li>
 <li>We have a useful <a href="https://social-science-data-editors.github.io/template_README/template-README.html">template</a> and a <a href="https://www.templatereadme.org">template generator</a>.</li>
 <li>Here are the <a href="https://ejdataeditor.github.io/package.html#the-readme-file">minimum requirements for a <code>README</code></a> at <em>The Economic Journal</em></li>
 </ol>
 </section>
-<section id="best-practices" class="slide level2">
+<section>
+<section id="best-practices" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Best Practices</h1>
+
+</section>
+<section id="best-practices-1" class="slide level2">
 <h2>Best Practices</h2>
 <ol type="1">
 <li>Project Organisation (<strong>folder structure</strong>)</li>
@@ -489,12 +501,23 @@ Florian Oswald, RES Data Editor
 <li>Output</li>
 </ol>
 </section>
-<section id="project-organisation" class="slide level2">
-<h2>Project Organisation</h2>
+<section id="best-practices-2" class="slide level2">
+<h2>Best Practices</h2>
+<h3 id="project-organisation">Project Organisation</h3>
 <ul>
 <li><em>Folder Structure</em> is a first order concern for your project.</li>
 </ul>
 <div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Minimum Requirement</strong></p>
+</div>
+<div class="callout-content">
+<p>There should be a separation along:</p>
 <ol type="1">
 <li>Inputs: Data, parameters, etc</li>
 <li>Outputs: Numbers, tables, figures</li>
@@ -502,12 +525,15 @@ Florian Oswald, RES Data Editor
 <li>Paper/Report etc</li>
 </ol>
 </div>
+</div>
+</div>
+</div>
 <div class="fragment">
 <p>Example?</p>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="best-practices-3" class="slide level2">
+<h2>Best Practices</h2>
 <h3 id="good-or-bad">Good or Bad?</h3>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -557,8 +583,8 @@ Florian Oswald, RES Data Editor
 </div>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="best-practices-4" class="slide level2">
+<h2>Best Practices</h2>
 <h3 id="good">Good 👍</h3>
 <div class="columns">
 <div class="column" style="width:45%;">
@@ -602,13 +628,13 @@ Florian Oswald, RES Data Editor
 </div>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="best-practices-5" class="slide level2">
+<h2>Best Practices</h2>
 <h3 id="example-tier-protocol-structure">Example: <a href="https://www.projecttier.org/tier-protocol/protocol-4-0/">TIER Protocol</a> structure</h3>
 
 <img data-src="img/TIER.png" class="r-stretch"></section>
-<section class="slide level2">
-
+<section id="best-practices-6" class="slide level2">
+<h2>Best Practices</h2>
 <h3 id="best-project-structure">Best Project Structure?</h3>
 <p><br></p>
 <div class="fragment">
@@ -642,9 +668,14 @@ Florian Oswald, RES Data Editor
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="reproducible-code" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Reproducible Code</h1>
+
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
+<section id="reproducible-code-1" class="slide level2">
+<h2>Reproducible Code</h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -664,15 +695,14 @@ Florian Oswald, RES Data Editor
 <div class="fragment">
 <ol type="1">
 <li>Provide a run script which…<em>runs everything</em>.</li>
-<li><strong>No</strong> copy and paste in your pipeline! Write results to disk.</li>
+<li><span class="bg" style="--col: #e64173">No</span> copy and paste in your pipeline! Write results to disk.</li>
 <li>Clear instructions</li>
 <li>Provide a clear way to create the required environment (library installation etc)</li>
 </ol>
 </div>
 </section>
-<section class="slide level2">
-
-<h3 id="reproducible-code">Reproducible Code</h3>
+<section id="reproducible-code-2" class="slide level2">
+<h2>Reproducible Code</h2>
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="callout callout-important callout-titled callout-style-default">
@@ -718,32 +748,32 @@ Florian Oswald, RES Data Editor
 </div>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="reproducible-code-3" class="slide level2">
+<h2>Reproducible Code</h2>
 <h3 id="file-paths">File Paths</h3>
 <p>👉 Ask the user to set the <code>root</code> of your project, via global variable, environment variable, or other</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in my R, I do</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">PACKAGE_ROOT=</span><span class="st">"/Users/floswald/Downloads/your_package"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># your package uses:</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">file.path</span>(<span class="fu">Sys.getenv</span>(<span class="st">"PACKAGE_ROOT"</span>), <span class="st">"data"</span>, <span class="st">"wages.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># in my R, I do</span></span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">PACKAGE_ROOT=</span><span class="st">"/Users/floswald/Downloads/your_package"</span>)</span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># your package uses:</span></span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">file.path</span>(<span class="fu">Sys.getenv</span>(<span class="st">"PACKAGE_ROOT"</span>), <span class="st">"data"</span>, <span class="st">"wages.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a># <span class="kw">in</span> my stata, <span class="fu">I</span> <span class="kw">do</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> PACKAGE_ROOT <span class="st">"/Users/floswald/Downloads/your_package"</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a># your package uses</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$PACKAGE_ROOT/data/wages.dta"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Always</em> use forward slashes on Stata <code>/</code>, even on a windows machine!</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a># <span class="kw">in</span> my stata, <span class="fu">I</span> <span class="kw">do</span></span>
+<span id="cb4-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> PACKAGE_ROOT <span class="st">"/Users/floswald/Downloads/your_package"</span></span>
+<span id="cb4-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="" aria-hidden="true" tabindex="-1"></a># your package uses</span>
+<span id="cb4-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="st">"$PACKAGE_ROOT/data/wages.dta"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="bg" style="--col: #e64173">Always</span> use forward slashes on Stata <code>/</code>, even on a windows machine!</p>
 </section>
-<section class="slide level2">
-
+<section id="reproducible-code-4" class="slide level2">
+<h2>Reproducible Code</h2>
 <h3 id="safe-environments-for-running-your-code">Safe Environments for Running Your Code</h3>
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="https://imgs.xkcd.com/comics/python_environment.png"></p>
-<p></p><figcaption><a href="https://xkcd.com/1987/">https://xkcd.com/1987/</a></figcaption><p></p>
+<figcaption><a href="https://xkcd.com/1987/">https://xkcd.com/1987/</a></figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:1%;">
@@ -782,51 +812,63 @@ Florian Oswald, RES Data Editor
 </div>
 </div>
 </section>
-<section class="slide level2">
-
+<section id="reproducible-code-5" class="slide level2">
+<h2>Reproducible Code</h2>
 <h3 id="safe-environments-for-running-your-code-1">Safe Environments for Running Your Code</h3>
 <ul>
 <li><p>At a minimum, you list your exact computing environment:</p></li>
 <li><p>OS, software and which version used (<code>R 4.1</code>, <code>stata 17/MP</code>, <code>matlab 2023b</code>, <code>GNU Fortran (Homebrew GCC 13.2.0)</code>)</p></li>
 <li><p>Libraries and which exact version used (<code>ggplot2 1.3.4</code>, <code>outreg 2</code>, <code>numpy 1.26.4</code>, <code>boost 1.8.3</code> )</p></li>
-<li><p>Unfortunately, this may not be enough at times. (See comic on previous slide!)</p></li>
+<li><p>Stata: install all libraries <span class="bg" style="--col: #e64173">into</span> you replication package.</p></li>
 </ul>
 <p>👉 Virtual Environments can help.</p>
 </section>
-<section class="slide level2">
-
+<section id="reproducible-code-6" class="slide level2">
+<h2>Reproducible Code</h2>
 <h3 id="provide-a-virtual-environment">Provide a Virtual Environment</h3>
 <div class="columns">
 <div class="column" style="width:45%;">
-<h4 id="python">Python</h4>
-<p>via anaconda:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>conda create <span class="op">-</span>n py27 python<span class="op">=</span><span class="fl">2.7</span> numpy<span class="op">=</span><span class="fl">1.15.4</span> matplotlib</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>conda activate py27</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>There are other virtual env managers in python.</p>
-<h4 id="r">R</h4>
+<p><code>python</code> via anaconda:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>conda create <span class="op">-</span>n py27 python<span class="op">=</span><span class="fl">2.7</span> numpy<span class="op">=</span><span class="fl">1.15.4</span> matplotlib</span>
+<span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a>conda activate py27</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>There are other virtual env managers in python</p>
 <p><code>R</code> via <a href="https://rstudio.github.io/renv/articles/renv.html"><code>renv</code></a></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in your existing project:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>() <span class="co"># creates local library</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>() <span class="co"># commit</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()  <span class="co"># checkout</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I recommend to avoid the <code>groundhog</code> package.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># in your existing project:</span></span>
+<span id="cb6-2"><a href="" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>() <span class="co"># creates local library</span></span>
+<span id="cb6-3"><a href="" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>() <span class="co"># commit</span></span>
+<span id="cb6-4"><a href="" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()  <span class="co"># checkout</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:1%;">
 
 </div><div class="column" style="width:45%;">
-<h4 id="julia">julia</h4>
-<p>Julia built-in <code>Pkg</code> manager:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span> activate .</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  Activating <span class="kw">new</span> project at <span class="ss">`~/CEPII`</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>(CEPII) pkg<span class="op">&gt;</span> add DataFrames GLM</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># created 2 files in `~/CEPII`</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># tracking all dependencies</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><br></p>
-<h4 id="docker">Docker 🐳</h4>
-<p>…or provide a full <a href="https://aeadataeditor.github.io/posts/2021-11-16-docker">docker container</a>.</p>
+<p><code>julia</code> built-in <code>Pkg</code> manager:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a>(<span class="pp">@v1</span><span class="fl">.10</span>) pkg<span class="op">&gt;</span> activate .</span>
+<span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>  Activating <span class="kw">new</span> project at <span class="ss">`~/CEPII`</span></span>
+<span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a>(CEPII) pkg<span class="op">&gt;</span> add DataFrames GLM</span>
+<span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># created 2 files in `~/CEPII`</span></span>
+<span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># tracking all dependencies</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>Docker</code> 🐳 <a href="https://aeadataeditor.github.io/posts/2021-11-16-docker">container</a>. This provides a fully specified virtual machine (i.e.&nbsp;a dedicated computer for your project)</p>
 </div>
 </div>
-<div class="fragment">
+</section>
+<section id="reproducible-code-7" class="slide level2">
+<h2>Reproducible Code</h2>
+<h3 id="stata-virtual-environment">Stata Virtual Environment</h3>
+<ol type="1">
+<li>Include a <code>version xyz</code> statement in master script.</li>
+<li>User contributed libraries are not versioned.</li>
+<li>You <em>must</em> install all libraries next to your project code. If not, <code>ssc install somelib</code> will install an incompatible version a few years later.</li>
+<li>Here is a <a href="https://github.com/reifjulian/my-project/blob/master/analysis/scripts/programs/_config.do">_config.do script</a> forcing stata to use only libraries installed in a given location.</li>
+<li>Excellent guidance by <a href="https://julianreif.com/guide/#libraries">Julian Reif</a></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode stata code-with-copy"><code class="sourceCode stata"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>* file <span class="kw">run</span>.<span class="kw">do</span>:</span>
+<span id="cb8-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">global</span> root <span class="st">"/location/of/your/package"</span></span>
+<span id="cb8-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">do</span> <span class="ot">$root</span>/code/_config.<span class="kw">do</span> <span class="co">/* from above link.</span></span>
+<span id="cb8-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">will use libaries in $root/code/libraries only */</span></span>
+<span id="cb8-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="kw">do</span> <span class="ot">$root</span>/code/runanalysis.<span class="kw">do</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="reproducible-code-8" class="slide level2">
+<h2>Reproducible code</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -840,17 +882,26 @@ Florian Oswald, RES Data Editor
 </div>
 </div>
 </div>
-</div>
+</section></section>
+<section>
+<section id="data" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Data</h1>
+
 </section>
-<section id="data" class="slide level2">
+<section id="data-1" class="slide level2">
 <h2>Data</h2>
 <ul>
 <li>Always keep your raw data intact (i.e.&nbsp;read-only).</li>
 <li>Generate separate analysis datasets to perform analysis.</li>
 <li>Datasets change over time, keep a record of the date and versions you obtained. It might be difficult to obtain it in the future.</li>
 </ul>
+</section></section>
+<section>
+<section id="output" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Output</h1>
+
 </section>
-<section id="output" class="slide level2">
+<section id="output-1" class="slide level2">
 <h2>Output</h2>
 <ul>
 <li>Write both tables and figures to disk.</li>
@@ -885,28 +936,32 @@ Florian Oswald, RES Data Editor
 </table>
 </div>
 </section>
-<section class="slide level2">
-
-<h3 id="output-2">Output 2</h3>
+<section id="output-2" class="slide level2">
+<h2>Output</h2>
+<h3 id="more-details">More Details</h3>
 <ul>
 <li>Run your codes from the replication folder before you submit and make sure it runs and all your results are reproduced - ideally on another machine!</li>
 <li>Make sure to <strong>delete all expected output from the package before you run it</strong>, so you can be sure that all output was actually produced.</li>
 <li>Ideally, your submitted paper (your <span class="math inline">\(\LaTeX\)</span> file which produces it) <em>should depend on the output of your replication package</em>, so that if a piece of output is missing, the paper cannot be compiled (or you would quickly spot the mistake).</li>
 <li>Help us by submitting your package <strong>without any expected output</strong>, i.e.&nbsp;with an empty folder <code>outputs/</code>.</li>
 </ul>
-</section>
-<section id="case-studies" class="slide level2">
-<h2>Case Studies</h2>
-<ul>
-<li>show replication of this https://zenodo.org/records/3925391 : Reis this will work in python venv with Conda<br>
-</li>
-<li>https://zenodo.org/records/5634269 benhabib bisin works</li>
-<li>https://zenodo.org/records/5123362 stata works</li>
-<li>https://zenodo.org/records/6607692 will fail because of R versioning problem.</li>
-</ul>
+</section></section>
+<section>
+<section id="case-studies" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Case Studies</h1>
 
-<img src="img/RES-logo_WHITE.png" class="slide-logo r-stretch"><div class="footer footer-default">
+</section>
+<section id="replications" class="slide level2">
+<h2>Replications</h2>
+<p><a href="https://github.com/RES-Reproducibility/CEPII-workshop">Instructions for Case Studies</a></p>
+</section></section>
+<section id="end" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>End</h1>
+<div class="quarto-auto-generated-content">
+<p><img src="img/RES-logo_WHITE.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p><a href="https://RES-reproducibility.github.io/hitchhiker/">Hitchhiker’s 👍 Guide To Reproducibility</a></p>
+</div>
 </div>
 </section>
     </div>
@@ -935,7 +990,6 @@ Florian Oswald, RES Data Editor
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1196,10 +1250,9 @@ Florian Oswald, RES Data Editor
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1209,8 +1262,17 @@ Florian Oswald, RES Data Editor
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
