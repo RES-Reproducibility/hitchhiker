@@ -39,23 +39,12 @@ date-format: "D MMMM, YYYY"
 :::: {.columns}
 
 ::: {.column width="45%"}
-::: {.fragment}
-1. Computational Empathy
-:::
-::: {.fragment}
-2. Make data accessible
-:::
-
-::: {.fragment}
-3. Cite Data and how to access it
-:::
-
-::: {.fragment}
-4. Describe software and hardware requirements
-:::
-
-::: {.fragment}
-5. Provide all code
+::: {.incremental}
+(@) Computational Empathy
+(@) Make data accessible
+(@) Cite Data and how to access it
+(@) Describe software and hardware requirements
+(@) Provide all code
 :::
 
 :::
@@ -63,28 +52,16 @@ date-format: "D MMMM, YYYY"
 <!-- empty column to create gap -->
 :::
 ::: {.column width="43%"}
-::: {.fragment}
-6. Explain how to reproduce your work
-:::
-
-::: {.fragment}
-7. Provide a table of all things that can be reproduced
-:::
-
-::: {.fragment}
-8. Include all supporting material
-:::
-
-::: {.fragment}
-9. Use a permissible license. Any [license](https://blog.codinghorror.com/pick-a-license-any-license/) is better than none.
-:::
-
-::: {.fragment}
-10. Re-run everything!
-:::
+::: {.incremental}
+(@) Explain how to reproduce your work
+(@) Provide a table of all things that can be reproduced
+(@) Include all supporting material
+(@) Use a permissible license. Any [license](https://blog.codinghorror.com/pick-a-license-any-license/) is better than none.
+(@) Re-run everything!
 
 :::
 
+:::
 ::::
 
 ---
