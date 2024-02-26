@@ -1,12 +1,12 @@
 ---
 title: Hitchhiker's 👍 Guide To Reproducibility
-title-slide-attributes:
-  data-background-image: img/RES-logo_WHITE copy.png
-  data-background-size: 15%
-  data-background-position: 85% 80%
+# title-slide-attributes:
+#   data-background-image: img/RES-logo_WHITE copy.png
+#   data-background-size: 15%
+#   data-background-position: 60% 52%
 format: 
   revealjs:
-    theme: _extensions/metropolis-theme/metropolis.scss
+    theme: _extensions/grantmcdermott/clean/clean.scss
     chalkboard: false
     logo: img/RES-logo_WHITE.png
     footer: "[Hitchhiker's 👍 Guide To Reproducibility](https://RES-reproducibility.github.io/hitchhiker/)"
@@ -14,15 +14,19 @@ format:
     code-line-numbers: false
     highlight-style: github
     slide-number: true
-author: "Florian Oswald, RES Data Editor"
+author: 
+  - name: Florian Oswald
+    orcid: 0000-0001-7737-2038
+    email: florian.oswald@sciencespo.fr
+    affiliations: SciencesPo Paris, RES Data Editor
 subtitle: "[Workshop at CEPII Paris](https://RES-reproducibility.github.io/hitchhiker/)"
-date: today
+date: last-modified
 date-format: "D MMMM, YYYY"
 ---
 
 ## Agenda
 
-1. [10 simple rules to Reproducibility](https://zenodo.org/records/8117361) by Econ Data Editors.
+1. [10 simple rules to Reproducibility](https://zenodo.org/records/8117361) compiled by the Econ Data Editors.
 2. The `README` file.
 2. Some Reproducibility Best Practices.
 3. Three attempts at reproducing published papers.
@@ -72,7 +76,7 @@ date-format: "D MMMM, YYYY"
 :::
 
 ::: {.fragment}
-9. Use a permissible license
+9. Use a permissible license. Any [license](https://blog.codinghorror.com/pick-a-license-any-license/) is better than none.
 :::
 
 ::: {.fragment}
@@ -87,12 +91,12 @@ date-format: "D MMMM, YYYY"
 
 ## The `README` File
 
-1. Plain text top level file which explains **everything** about your package.
+1. Plain text top level file which explains [everything]{.bg style="--col: #e64173"} about your package.
 2. We have a useful [template](https://social-science-data-editors.github.io/template_README/template-README.html) and a [template generator](https://www.templatereadme.org).
 3. Here are the [minimum requirements for a `README`](https://ejdataeditor.github.io/package.html#the-readme-file) at *The Economic Journal*
 
 
----
+# Best Practices {background-color="#40666e"}
 
 ## Best Practices
 
@@ -102,24 +106,34 @@ date-format: "D MMMM, YYYY"
 4. Output
 
 
----
+## Best Practices
 
-## Project Organisation
+
+### Project Organisation
 
 * _Folder Structure_ is a first order concern for your project.
 
 ::: {.fragment}
+
+::: {.callout-tip}
+# Minimum Requirement
+
+There should be a separation along:
+
 1. Inputs: Data, parameters, etc
 2. Outputs: Numbers, tables, figures
 3. Code
 4. Paper/Report etc
+:::
 :::
 
 ::: {.fragment}
 Example?
 :::
 
----
+
+
+## Best Practices
 
 ### Good or Bad?
 
@@ -184,7 +198,7 @@ Example?
 :::
 
 
----
+## Best Practices
 
 ### Good 👍
 
@@ -246,13 +260,15 @@ Example?
 
 
 
----
+## Best Practices
+
 
 ### Example: [TIER Protocol](https://www.projecttier.org/tier-protocol/protocol-4-0/) structure
 
 ![](img/TIER.png)
 
----
+
+## Best Practices
 
 ### Best Project Structure?
 
@@ -273,9 +289,10 @@ Ideally your *entire* project is under [version control](https://git-scm.com/boo
 :::
 :::
 
----
+# Reproducible Code {background-color="#40666e"}
 
-## Code
+
+## Reproducible Code
 
 ::: {.callout-tip}
 # Question:
@@ -289,15 +306,14 @@ How to write reproducible code?
 
 ::: {.fragment}
 1. Provide a run script which...*runs everything*.
-2. **No** copy and paste in your pipeline! Write results to disk.
+2. [No]{.bg style="--col: #e64173"} copy and paste in your pipeline! Write results to disk.
 3. Clear instructions
 4. Provide a clear way to create the required environment (library installation etc)
 :::
 
 
----
 
-### Reproducible Code
+## Reproducible Code
 
 
 ::: {.columns}
@@ -332,7 +348,7 @@ _file paths are such low-hanging fruit 🍇..._
 :::
 
 
----
+## Reproducible Code
 
 ### File Paths
 
@@ -355,10 +371,10 @@ global PACKAGE_ROOT "/Users/floswald/Downloads/your_package"
 use "$PACKAGE_ROOT/data/wages.dta"
 ```
 
-*Always* use forward slashes on Stata `/`, even on a windows machine!
+[Always]{.bg style="--col: #e64173"} use forward slashes on Stata `/`, even on a windows machine!
 
 
----
+## Reproducible Code
 
 ### Safe Environments for Running Your Code
 
@@ -398,7 +414,7 @@ Your code will yield identical results on a different computer **only if** certa
 
 
 
----
+## Reproducible Code
 
 ### Safe Environments for Running Your Code
 
@@ -407,12 +423,12 @@ Your code will yield identical results on a different computer **only if** certa
 
 * Libraries and which exact version used (`ggplot2 1.3.4`, `outreg 2`, `numpy 1.26.4`, `boost 1.8.3` )
 
-* Unfortunately, this may not be enough at times. (See comic on previous slide!)
+* Stata: install all libraries [into]{.bg style="--col: #e64173"} you replication package.
 
 👉 Virtual Environments can help.
 
 
----
+## Reproducible Code
 
 ### Provide a Virtual Environment
 
@@ -421,17 +437,14 @@ Your code will yield identical results on a different computer **only if** certa
 :::: {.columns}
 
 ::: {.column width=45%}
-#### Python
 
-via anaconda:
+`python` via anaconda:
 ```python
 conda create -n py27 python=2.7 numpy=1.15.4 matplotlib
 conda activate py27
 ```
+There are other virtual env managers in python
 
-There are other virtual env managers in python.
-
-#### R
 
 `R` via [`renv`](https://rstudio.github.io/renv/articles/renv.html)
 
@@ -442,7 +455,6 @@ renv::snapshot() # commit
 renv::restore()  # checkout
 ```
 
-I recommend to avoid the `groundhog` package.
 
 
 :::
@@ -452,9 +464,8 @@ I recommend to avoid the `groundhog` package.
 :::
 
 ::: {.column width=45%}
-#### julia
 
-Julia built-in `Pkg` manager:
+`julia` built-in `Pkg` manager:
 
 ```julia
 (@v1.10) pkg> activate .
@@ -466,11 +477,8 @@ Julia built-in `Pkg` manager:
 
 ```
 
-<br>
 
-#### Docker 🐳
-
-...or provide a full [docker container](https://aeadataeditor.github.io/posts/2021-11-16-docker).
+`Docker` 🐳 [container](https://aeadataeditor.github.io/posts/2021-11-16-docker). This provides a fully specified virtual machine (i.e. a dedicated computer for your project)
 
 
 :::
@@ -478,24 +486,47 @@ Julia built-in `Pkg` manager:
 
 ::::
 
-::: {.fragment}
+## Reproducible Code
+
+### Stata Virtual Environment
+
+1. Include a `version xyz` statement in master script. 
+2. User contributed libraries are not versioned.
+3. You *must* install all libraries next to your project code. If not, `ssc install somelib` will install an incompatible version a few years later.
+4. Here is  a [_config.do script](https://github.com/reifjulian/my-project/blob/master/analysis/scripts/programs/_config.do) forcing stata to use only libraries installed in a given location.
+5. Excellent guidance by [Julian Reif](https://julianreif.com/guide/#libraries)
+
+```stata
+* file run.do:
+global root "/location/of/your/package"
+do $root/code/_config.do /* from above link.
+will use libaries in $root/code/libraries only */
+do $root/code/runanalysis.do
+```
+
+
+## Reproducible code
+
 ::: {.callout-note}
 Such mechanisms can reduce version conflicts amongst your dependencies. To the extent that all versions of those dependencies are still available, this guarantees a stable computing environment.
 :::
-:::
 
 
----
+
+
+
+# Data  {background-color="#40666e"}
 
 ## Data
-
 
 * Always keep your raw data intact (i.e. read-only). 
 * Generate separate analysis datasets to perform analysis. 
 * Datasets change over time, keep a record of the date and versions you obtained. It might be difficult to obtain it in the future.
 
 
----
+
+
+# Output  {background-color="#40666e"}
 
 ## Output
 
@@ -513,9 +544,9 @@ Such mechanisms can reduce version conflicts amongst your dependencies. To the e
 
 :::
 
----
+## Output
 
-### Output 2
+### More Details
 
 * Run your codes from the replication folder before you submit and make sure it runs and all your results are reproduced - ideally on another machine!
 * Make sure to **delete all expected output from the package before you run it**, so you can be sure that all output was actually produced. 
@@ -523,12 +554,12 @@ Such mechanisms can reduce version conflicts amongst your dependencies. To the e
 * Help us by submitting your package **without any expected output**, i.e. with an empty folder `outputs/`.
 
 
----
 
-## Case Studies
+# Case Studies  {background-color="#40666e"}
+
+## Replications
+
+[Instructions for Case Studies](https://github.com/RES-Reproducibility/CEPII-workshop)
 
 
-* show replication of this https://zenodo.org/records/3925391 : Reis this will work in python venv with Conda    
-* https://zenodo.org/records/5634269 benhabib bisin works
-* https://zenodo.org/records/5123362 stata works
-* https://zenodo.org/records/6607692 will fail because of R versioning problem.
+# End {background-color="#40666e"}
