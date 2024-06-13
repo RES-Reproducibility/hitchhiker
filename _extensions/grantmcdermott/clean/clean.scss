@@ -40,6 +40,8 @@ $body-color: $jet !default;
 $link-color: $accent !default;
 $selection-bg: #26351c !default;
 
+$code-color: rgb(212, 0, 0);
+$code-background-color: #f3bebe33;
 
 /*-- scss:rules --*/
 
@@ -55,9 +57,9 @@ $selection-bg: #26351c !default;
 
 // inline
 .reveal code {
-	font-size: 80%;
+	font-size: 100%;
 	background-color: #afb8c133;
-	color: #000;
+	color: #c70101;
 	padding: 4px;
 	border-radius: 6px;
 }
